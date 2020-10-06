@@ -1,0 +1,8 @@
+# environment
+/venv
+
+# jupyter
+/.ipynb_checkpoints
+
+# datasets
+/data
