@@ -7,7 +7,7 @@ def dls(start, goal, depth=20):
     # A list (can act as a stack too) for the nodes.
     nodes = []
     # Create the queue with the root node in it.
-    nodes.append(Node.create_node(start, None, None, 0, 0))
+    nodes.append(Node.create_node(start, None, None, 0))
     count = 0
     explored = []
     while nodes:
@@ -15,10 +15,9 @@ def dls(start, goal, depth=20):
         node = nodes.pop(0)
         count += 1
         explored.append(node.get_state())
-        print("Trying state", node.state.get_matrix(), " and move: ", node.operator)
+        print("trying state", node.state.get_matrix(), " and move: ", node.operator)
         # if this node is the goal, return the moves it took to get here.
         if node.state == goal:
-            print("done")
             print("The number of nodes visited", count)
             print("States of moves are as follows:")
             return node.path_from_start()
@@ -31,7 +30,7 @@ def dls(start, goal, depth=20):
 
 
 def ids(start, goal, depth=50):
-    """Perfoms an iterative depth first search."""
+    """Performs an iterative depth first search."""
     for i in range(depth):
         result = dls(start, goal, i)
         if result != None:

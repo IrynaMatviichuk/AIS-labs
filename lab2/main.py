@@ -10,12 +10,20 @@ from State import State
 
 
 def main():
-    goal_state = State([1, 2, 3, 4, 5, 6, 7, 8, 0])
-    start_state = State([1, 2, 3, 0, 4, 6, 7, 5, 8])
+    start_state = State([
+        0, 2, 3,
+        4, 6, 1,
+        7, 5, 8
+    ])
+    goal_state = State([
+        1, 2, 3,
+        4, 5, 6,
+        7, 8, 0
+    ])
     comparator = Comparator(goal_state)
     start = time.time()
     result = a_star(start_state, goal_state, comparator)
-    # result = ids(State(start_state), State(goal_state))
+    # result = ids(start_state, goal_state)
     end = time.time()
     totaltime = end - start
     if result is None:
@@ -24,8 +32,8 @@ def main():
         print("Start node was the goal!")
     else:
         print(result)
-        print(len(result), " moves")
-    print("Total searching time: %.5f seconds" % (totaltime))
+        print(f"{len(result)} moves")
+    print(f"Total searching time: {round(totaltime, 5)} seconds")
 
 
 if __name__ == "__main__":

@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self, state, parent, operator, depth, cost):
+    def __init__(self, state, parent, operator, depth):
         # Contains the state of the node
         self.state = state
         # Contains the node that generated this node
@@ -8,10 +8,6 @@ class Node:
         self.operator = operator
         # Contains the depth of this node (parent.depth +1)
         self.depth = depth
-        # Contains the path cost of this node from depth 0. Not used for depth/breadth first.
-        self.cost = cost
-        # Contains the f-cost of this node from depth 0 for IDA_star search.
-        self.f_cost = 0
 
     def get_state(self):
         return self.state
@@ -22,11 +18,11 @@ class Node:
     def path_from_start(self):
         state_list = []
         moves_list = []
-        currNode = self
-        while currNode.get_moves() is not None:
-            state_list.append(currNode.get_state())
-            moves_list.append(currNode.get_moves())
-            currNode = currNode.parent
+        curr_node = self
+        while curr_node.get_moves() is not None:
+            state_list.append(curr_node.get_state())
+            moves_list.append(curr_node.get_moves())
+            curr_node = curr_node.parent
         moves_list.reverse()
         state_list.reverse()
         for state in state_list:
@@ -41,27 +37,27 @@ class Node:
         print()
 
     @staticmethod
-    def create_node(state, parent, operator, depth, cost):
-        return Node(state, parent, operator, depth, cost)
+    def create_node(state, parent, operator, depth):
+        return Node(state, parent, operator, depth)
 
     @staticmethod
     def expand_node(node):
         """Returns a list of expanded nodes"""
         expanded_nodes = []
         expanded_nodes.append(
-            Node.create_node(node.state.move_up(), node, "up", node.depth + 1, 0)
+            Node.create_node(node.state.move_up(), node, "up", node.depth + 1)
         )
         expanded_nodes.append(
-            Node.create_node(node.state.move_down(), node, "down", node.depth + 1, 0)
+            Node.create_node(node.state.move_down(), node, "down", node.depth + 1)
         )
         expanded_nodes.append(
-            Node.create_node(node.state.move_left(), node, "left", node.depth + 1, 0)
+            Node.create_node(node.state.move_left(), node, "left", node.depth + 1)
         )
         expanded_nodes.append(
-            Node.create_node(node.state.move_right(), node, "right", node.depth + 1, 0)
+            Node.create_node(node.state.move_right(), node, "right", node.depth + 1)
         )
-        # Filter the list and remove the nodes that are impossible (move function returned None)
         expanded_nodes = [
             node for node in expanded_nodes if node.state != None
-        ]  # list comprehension!
+        ]
+
         return expanded_nodes
