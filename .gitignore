@@ -138,5 +138,4 @@ dmypy.json
 cython_debug/
 
 # dataset
-/data
-/algorithms-for-8-puzzle
+*/data
