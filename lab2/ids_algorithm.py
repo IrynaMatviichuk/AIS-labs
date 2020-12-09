@@ -2,21 +2,16 @@ from Node import Node
 
 
 def dls(start, goal, depth=20):
-    """Performs the depth limit search. """
     depth_limit = depth
-    # A list (can act as a stack too) for the nodes.
     nodes = []
-    # Create the queue with the root node in it.
     nodes.append(Node.create_node(start, None, None, 0))
     count = 0
     explored = []
     while nodes:
-        # take the node from the front of the queue
         node = nodes.pop(0)
         count += 1
         explored.append(node.get_state())
         print("trying state", node.state.get_matrix(), " and move: ", node.operator)
-        # if this node is the goal, return the moves it took to get here.
         if node.state == goal:
             print("The number of nodes visited", count)
             print("States of moves are as follows:")
@@ -30,7 +25,6 @@ def dls(start, goal, depth=20):
 
 
 def ids(start, goal, depth=50):
-    """Performs an iterative depth first search."""
     for i in range(depth):
         result = dls(start, goal, i)
         if result != None:

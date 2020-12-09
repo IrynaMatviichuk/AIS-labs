@@ -1,12 +1,8 @@
 class Node:
     def __init__(self, state, parent, operator, depth):
-        # Contains the state of the node
         self.state = state
-        # Contains the node that generated this node
         self.parent = parent
-        # Contains the operation that generated this node from the parent
         self.operator = operator
-        # Contains the depth of this node (parent.depth +1)
         self.depth = depth
 
     def get_state(self):
@@ -42,7 +38,6 @@ class Node:
 
     @staticmethod
     def expand_node(node):
-        """Returns a list of expanded nodes"""
         expanded_nodes = []
         expanded_nodes.append(
             Node.create_node(node.state.move_up(), node, "up", node.depth + 1)

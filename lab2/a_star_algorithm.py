@@ -4,7 +4,6 @@ from Node import Node
 
 
 def a_star(start, goal, comparator):
-    """Perfoms the A* heuristic search"""
     nodes = []
     nodes.append(Node.create_node(start, None, None, 0))
     explored = []
