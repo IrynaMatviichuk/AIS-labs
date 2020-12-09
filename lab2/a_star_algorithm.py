@@ -19,7 +19,6 @@ def a_star(start, goal, comparator):
             print("States of moves are as follows:")
             return node.path_from_start()
         else:
-            # Expand the node and add all the expansions to the end of the queue
             expanded_nodes = Node.expand_node(node)
             for item in expanded_nodes:
                 state = item.get_state()
