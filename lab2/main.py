@@ -10,14 +10,11 @@ from State import State
 
 
 def main():
-    # start_state = State([
-    #     0, 2, 3,
-    #     4, 6, 1,
-    #     7, 5, 8
-    # ])
-    start_state = State(
-        [1, 0, 3, 5, 2, 6, 4, 7, 8]
-    )
+    start_state = State([
+        0, 2, 3,
+        4, 6, 1,
+        7, 5, 8
+    ])
     goal_state = State([
         1, 2, 3,
         4, 5, 6,
