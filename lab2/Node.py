@@ -22,15 +22,9 @@ class Node:
         moves_list.reverse()
         state_list.reverse()
         for state in state_list:
-            self.display_board(state)
+            state.display_board()
+            print()
         return moves_list
-
-    def display_board(self, state):
-        matrix = state.get_matrix()
-        print(f"| {matrix[0]} {matrix[1]} {matrix[2]} |")
-        print(f"| {matrix[3]} {matrix[4]} {matrix[5]} |")
-        print(f"| {matrix[6]} {matrix[7]} {matrix[8]} |")
-        print()
 
     @staticmethod
     def create_node(state, parent, operator, depth):
@@ -51,8 +45,6 @@ class Node:
         expanded_nodes.append(
             Node.create_node(node.state.move_right(), node, "right", node.depth + 1)
         )
-        expanded_nodes = [
-            node for node in expanded_nodes if node.state != None
-        ]
+        expanded_nodes = [node for node in expanded_nodes if node.state != None]
 
         return expanded_nodes

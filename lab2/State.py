@@ -54,3 +54,9 @@ class State:
             return State(new_state)
         else:
             return None
+
+    def display_board(self):
+        matrix = self.get_matrix()
+        print(f"| {matrix[0]} {matrix[1]} {matrix[2]} |")
+        print(f"| {matrix[3]} {matrix[4]} {matrix[5]} |")
+        print(f"| {matrix[6]} {matrix[7]} {matrix[8]} |")
