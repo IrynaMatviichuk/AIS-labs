@@ -8,7 +8,7 @@ from QAgent import QAgent
 
 def main():
     env = gym.make("NChain-v0")
-    env.env.slip = 0
+    env.env.slip = 0.01
 
     action_size = env.action_space.n
     state_size = env.observation_space.n
@@ -20,7 +20,7 @@ def main():
     }
 
     q_agent = QAgent(env, state_size, action_size, parameters)
-    q_agent.learn(plot=False, max_steps=50, total_episodes=1000)
+    q_agent.learn(plot=False, max_steps=100, total_episodes=1000)
 
     print("Q table:\n", q_agent.q_table)
     with sns.axes_style("whitegrid"):
